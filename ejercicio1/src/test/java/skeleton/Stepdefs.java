@@ -9,13 +9,6 @@ public class Stepdefs {
 	private Jugador[] jugadores = new Jugador[2]; 	
 	private Juego juego;
 	private int ganador = 0;
-	
-	
-    @Given("^I have (\\d+) cukes in my belly$")
-    public void I_have_cukes_in_my_belly(int cukes) throws Throwable {
-        Belly belly = new Belly();
-        belly.eat(cukes);
-    }
     
     @Given("^jugador(\\d+) juega PIEDRA$")
     public void jugador1_juega_PIEDRA(int numero) throws Throwable {
