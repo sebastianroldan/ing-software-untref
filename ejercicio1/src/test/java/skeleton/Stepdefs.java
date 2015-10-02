@@ -14,21 +14,21 @@ public class Stepdefs {
     public void jugador1_juega_PIEDRA(int numero) throws Throwable {
         jugadores[numero-1] = new Jugador();        
         jugadores[numero-1].setNumero(numero);
-        jugadores[numero-1].setMovimiento("PIEDRA");
+        jugadores[numero-1].setMovimiento(Movimiento.PIEDRA);
     }
     
     @When("^jugador(\\d+) juega TIJERA$")
     public void jugador2_juega_TIJERA(int numero) throws Throwable {
     	jugadores[numero-1] = new Jugador();
     	jugadores[numero-1].setNumero(numero);
-        jugadores[numero-1].setMovimiento("TIJERA"); 
+        jugadores[numero-1].setMovimiento(Movimiento.TIJERA); 
     }
     
 	@When("^jugador(\\d+) juega PAPEL$")
 	public void jugador2_juega_PAPEL(int numero) throws Throwable {
 		jugadores[numero-1] = new Jugador();    
 		jugadores[numero-1].setNumero(numero);
-        jugadores[numero-1].setMovimiento("PAPEL");        
+        jugadores[numero-1].setMovimiento(Movimiento.PAPEL);        
 	}
 	
 	@Then("^gana jugador(\\d+)$")

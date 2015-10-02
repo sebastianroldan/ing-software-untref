@@ -45,3 +45,8 @@ Scenario: Tijera vs Tijera
   When jugador2 juega TIJERA
   Then hay empate
   
+Scenario: Tijera vs Papel
+  Given jugador1 juega TIJERA
+  When jugador2 juega PAPEL
+  Then gana jugador1
+  

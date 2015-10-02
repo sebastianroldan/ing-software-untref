@@ -3,13 +3,13 @@ package skeleton;
 public class Jugador {
 	
 	private int numero;
-	private String movimiento;	
+	private Movimiento movimiento;	
 
-	public void setMovimiento(String movimiento) {
+	public void setMovimiento(Movimiento movimiento) {
 		 this.movimiento = movimiento;		
 	}
 	
-	public String getMovimiento(){
+	public Movimiento getMovimiento(){
 		return movimiento;		
 	}
 	
