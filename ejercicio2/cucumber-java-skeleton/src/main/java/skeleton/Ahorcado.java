@@ -4,7 +4,7 @@ public class Ahorcado {
 
 	private int vidas = 7;
 	private String palabraSecreta = "auto";
-	private char[] estado = {'*','*','*','*',};
+	private String estado = "****";
 	
 	public void setVidasRestantes(int vidasRestantes) {
 		this.vidas = vidasRestantes;
@@ -37,11 +37,14 @@ public class Ahorcado {
 
 	private void modificarEstado(String letraElegida) {
 		Character letra = letraElegida.toCharArray()[0];
+		char[] nuevoEstado = {'*','*','*','*',};
 		for (int i=0; i < this.palabraSecreta.length(); i++){
 			if (letra.equals(palabraSecreta.charAt(i))){
-				estado[i] = letra;
+				nuevoEstado[i] = letra;
 			}
 		}
+		
+		this.setEstado(nuevoEstado.toString());
 	}
 
 	private boolean acerto(Character letra) {
@@ -52,6 +55,10 @@ public class Ahorcado {
 			}			
 		}
 		return acerto;
+	}
+
+	public void setEstado(String nuevoEstado) {		
+		this.estado = nuevoEstado;
 	}
 	
 	
