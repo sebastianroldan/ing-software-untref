@@ -15,9 +15,9 @@ public class Ahorcado {
 		this.palabraSecreta = palabraSecreta;
 	}
 
-	public void arriesgo(Character letra) {
-		Character.toLowerCase(letra);
-		if (acerto(letra)){
+	public void arriesgo(String letra) {
+		Character letraEnMinuscula = letra.toLowerCase().toCharArray()[0];
+		if (acerto(letraEnMinuscula)){
 			modificarEstado(letra);			
 		}
 		else{
@@ -35,9 +35,8 @@ public class Ahorcado {
 		
 	}
 
-	
-	
-	private void modificarEstado(Character letra) {		
+	private void modificarEstado(String letraElegida) {
+		Character letra = letraElegida.toCharArray()[0];
 		for (int i=0; i < this.palabraSecreta.length(); i++){
 			if (letra.equals(palabraSecreta.charAt(i))){
 				estado[i] = letra;
@@ -48,9 +47,9 @@ public class Ahorcado {
 	private boolean acerto(Character letra) {
 		boolean acerto = false;
 		for (int i=0; i < this.palabraSecreta.length(); i++){
-			if (letra.equals(palabraSecreta.charAt(i))){
+			if (letra.equals(palabraSecreta.charAt(i))){				
 				acerto = true;
-			}
+			}			
 		}
 		return acerto;
 	}

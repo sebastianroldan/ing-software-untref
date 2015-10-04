@@ -17,7 +17,7 @@ public class Stepdefs {
 	}
 
 	@When("^arriesgo \"(.*?)\"$")
-	public void arriesgo(Character letra) throws Throwable {
+	public void arriesgo(String letra) throws Throwable {
 	 
 	    ahorcado.arriesgo(letra);
 	}

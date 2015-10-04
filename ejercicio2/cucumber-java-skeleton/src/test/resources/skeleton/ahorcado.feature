@@ -9,3 +9,8 @@ Scenario: Arriesgo "y" y tengo 7 vidas
   Given la palabra secreta es "auto" And me quedan 7 vidas
   When arriesgo "y"
   Then estado es "****"  And me quedan 6 vidas
+  
+Scenario: Arriesgo "A" y tengo 4 vidas
+  Given la palabra secreta es "auto" And me quedan 4 vidas
+  When arriesgo "A"
+  Then estado es "a***"  And me quedan 4 vidas  
