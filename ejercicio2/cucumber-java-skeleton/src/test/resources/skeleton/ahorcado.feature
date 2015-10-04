@@ -19,3 +19,8 @@ Scenario: Arriesgo "H" , tengo 1 vidas y estado es "****"
   Given la palabra secreta es "auto" And me quedan 1 vidas And estado es "****"
   When arriesgo "H"
   Then Ahorcado And me quedan 0 vidas
+  
+Scenario: Arriesgo "a", tengo 7 vidas y estado es "**t*"
+  Given la palabra secreta es "auto" And me quedan 7 vidas And estado es "**t*"
+  When arriesgo "a"
+  Then estado es "a*t*"  And me quedan 7 vidas
