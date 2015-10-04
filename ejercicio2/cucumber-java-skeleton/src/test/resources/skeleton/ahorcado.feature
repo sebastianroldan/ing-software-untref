@@ -14,3 +14,8 @@ Scenario: Arriesgo "A" y tengo 4 vidas
   Given la palabra secreta es "auto" And me quedan 4 vidas
   When arriesgo "A"
   Then estado es "a***"  And me quedan 4 vidas  
+  
+Scenario: Arriesgo "H" y tengo 1 vidas
+  Given la palabra secreta es "auto" And me quedan 1 vidas
+  When arriesgo "H"
+  Then Ahorcado And me quedan 0 vidas

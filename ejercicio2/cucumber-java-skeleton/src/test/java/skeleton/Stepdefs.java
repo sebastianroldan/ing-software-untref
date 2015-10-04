@@ -29,4 +29,11 @@ public class Stepdefs {
 	    }
 	}
 	
+	@Then("^Ahorcado And me quedan (\\d+) vidas$")
+	public void ahorcado_And_me_quedan_vidas(int cero) throws Throwable {	    
+		if (ahorcado.getVidas() > cero){
+			 throw new Exception();
+		}
+	}
+	
 }
