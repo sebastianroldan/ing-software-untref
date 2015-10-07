@@ -17,6 +17,14 @@ public class Stepdefs {
 	    ahorcado.setEstado(estado);
 	}
 
+	@Given("^la palabra secreta es \"(.*?)\" And me quedan (\\d+) vidas$")
+	public void la_palabra_secreta_es_And_me_quedan_vidas(String palabraSecreta, int vidas) throws Throwable {
+		ahorcado = new Ahorcado();
+	    ahorcado.setPalabraSecreta(palabraSecreta);	    
+	    ahorcado.setVidasRestantes(vidas);
+
+	}
+	
 	@Given("^la palabra secreta es \"(.*?)\" And estado es \"(.*?)\"$")
 	public void la_palabra_secreta_es_And_estado_es(String palabraSecreta, String estado) throws Throwable {
 		ahorcado = new Ahorcado();
