@@ -17,12 +17,20 @@ public class Stepdefs {
 	    ahorcado.setEstado(estado);
 	}
 
-	@When("^arriesgo \"(.*?)\"$")
-	public void arriesgo(String letra) throws Throwable {
-	 
-	    ahorcado.arriesgo(letra);
+	@Given("^la palabra secreta es \"(.*?)\" And estado es \"(.*?)\"$")
+	public void la_palabra_secreta_es_And_estado_es(String palabraSecreta, String estado) throws Throwable {
+		ahorcado = new Ahorcado();
+	    ahorcado.setPalabraSecreta(palabraSecreta);	    
+	    ahorcado.setEstado(estado);
 	}
 
+	@Then("^estado es \"(.*?)\"  And Ganaste$")
+	public void estado_es_And_Ganaste(String estado) throws Throwable {
+	    if (!ahorcado.elJugadorAdivinoLaPalabra()){
+	    	throw new Exception();
+	    }
+	}
+	
 	@Then("^estado es \"(.*?)\"  And me quedan (\\d+) vidas$")
 	public void estado_es_And_me_quedan_vidas(String estado, int vidasRestantes) throws Throwable {		
 	    if ((ahorcado.getVidas() != vidasRestantes)||(!estado.equals(ahorcado.getEstado()))){
@@ -37,4 +45,9 @@ public class Stepdefs {
 		}
 	}
 	
+	@When("^arriesgo \"(.*?)\"$")
+	public void arriesgo(String letra) throws Throwable {
+	 
+	    ahorcado.arriesgo(letra);
+	}
 }

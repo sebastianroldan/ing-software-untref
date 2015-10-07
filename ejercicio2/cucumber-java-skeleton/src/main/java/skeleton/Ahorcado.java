@@ -65,4 +65,9 @@ public class Ahorcado {
 		return acerto;
 	}
 
+	public boolean elJugadorAdivinoLaPalabra() {
+		
+		return this.estado.equals(this.palabraSecreta);
+	}
+
 }

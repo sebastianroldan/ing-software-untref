@@ -24,3 +24,8 @@ Scenario: Arriesgo "a", tengo 7 vidas y estado es "**t*"
   Given la palabra secreta es "auto" And me quedan 7 vidas And estado es "**t*"
   When arriesgo "a"
   Then estado es "a*t*"  And me quedan 7 vidas
+
+Scenario: Arriesgo "a" y gano el juego 
+  Given la palabra secreta es "auto" And estado es "*uto"
+  When arriesgo "a"
+  Then estado es "auto"  And Ganaste
