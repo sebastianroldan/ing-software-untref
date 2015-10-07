@@ -30,11 +30,6 @@ public class Ahorcado {
 		return this.vidas;
 	}
 	
-	private void descontarVida() {
-		this.vidas = this.vidas - 1;
-		
-	}
-	
 	public void setEstado(String nuevoEstado) {		
 		this.estado = nuevoEstado;
 	}
@@ -42,6 +37,17 @@ public class Ahorcado {
 	public String getEstado() {		
 		return this.estado;
 	}
+	
+	public boolean elJugadorAdivinoLaPalabra() {
+		
+		return this.estado.equals(this.palabraSecreta);
+	}
+
+	
+	private void descontarVida() {
+		this.vidas = this.vidas - 1;
+		
+	}	
 
 	private void modificarEstado(Character letra) {		
 		char[] nuevoEstado = estado.toCharArray();
@@ -63,11 +69,5 @@ public class Ahorcado {
 			}			
 		}
 		return acerto;
-	}
-
-	public boolean elJugadorAdivinoLaPalabra() {
-		
-		return this.estado.equals(this.palabraSecreta);
-	}
-
+	}	
 }

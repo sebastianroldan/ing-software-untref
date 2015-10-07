@@ -23,13 +23,25 @@ public class Stepdefs {
 	    ahorcado.setPalabraSecreta(palabraSecreta);	    
 	    ahorcado.setVidasRestantes(vidas);
 
-	}
+	}	
 	
 	@Given("^la palabra secreta es \"(.*?)\" And estado es \"(.*?)\"$")
 	public void la_palabra_secreta_es_And_estado_es(String palabraSecreta, String estado) throws Throwable {
 		ahorcado = new Ahorcado();
 	    ahorcado.setPalabraSecreta(palabraSecreta);	    
 	    ahorcado.setEstado(estado);
+	}
+	
+	@Given("^la palabra oculta es \"(.*?)\"$")
+	public void la_palabra_secreta_es(String palabraSecreta) throws Throwable {
+		ahorcado = new Ahorcado();
+	    ahorcado.setPalabraSecreta(palabraSecreta);
+	}
+	
+	@When("^arriesgo \"(.*?)\"$")
+	public void arriesgo(String letra) throws Throwable {
+	 
+	    ahorcado.arriesgo(letra);
 	}
 
 	@Then("^estado es \"(.*?)\"  And Ganaste$")
@@ -60,9 +72,4 @@ public class Stepdefs {
 		}
 	}
 	
-	@When("^arriesgo \"(.*?)\"$")
-	public void arriesgo(String letra) throws Throwable {
-	 
-	    ahorcado.arriesgo(letra);
-	}
 }

@@ -1,7 +1,7 @@
 Feature: Ahorcado
 
 Scenario: Arriesgo y acierto
-  Given la palabra secreta es "auto" And me quedan 7 vidas And estado es "****"
+  Given la palabra secreta es "auto" And me quedan 7 vidas
   When arriesgo "a"
   Then estado es "a***"  And me quedan 7 vidas
   
@@ -20,7 +20,7 @@ Scenario: Tengo una vida y no acierto
   When arriesgo "H"
   Then Ahorcado And me quedan 0 vidas
   
-Scenario: Arriesgo "a" y estado es "**t*"
+Scenario: Acierto y se modifica el estado
   Given la palabra secreta es "auto" And estado es "**t*"
   When arriesgo "a"
   Then estado es "a*t*"
@@ -29,3 +29,8 @@ Scenario: Arriesgo "a" y gano el juego
   Given la palabra secreta es "auto" And estado es "*uto"
   When arriesgo "a"
   Then estado es "auto"  And Ganaste
+
+Scenario: Arriesgo una letra que se repite 
+  Given la palabra oculta es "cama"
+  When arriesgo "a"
+  Then estado es "*a*a"
