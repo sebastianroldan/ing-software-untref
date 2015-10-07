@@ -53,6 +53,13 @@ public class Stepdefs {
 		}
 	}
 	
+	@Then("^estado es \"(.*?)\"$")
+	public void estado_es(String estado) throws Throwable {
+		if (!estado.equals(ahorcado.getEstado())){
+			throw new Exception();
+		}
+	}
+	
 	@When("^arriesgo \"(.*?)\"$")
 	public void arriesgo(String letra) throws Throwable {
 	 
