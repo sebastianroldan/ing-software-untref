@@ -9,3 +9,4 @@ ejercicio1/.classpath
 *.prefs
 ejercicio2/cucumber-java-skeleton/.classpath
 ejercicio2/cucumber-java-skeleton/target/test-classes/skeleton/ahorcado.feature
+ejercicio1/target/test-classes/skeleton/piedraPapelTijera.feature
