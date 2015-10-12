@@ -18,7 +18,7 @@ public class TableroTest {
 	}
 	
 	@Test
-	public void noDebeHaberBarcosEnPosicionUnoTresTest(){
+	public void noDebeHaberBarcosEnPosicionUnoTresTest() throws Exception{
 		
 		Assert.assertFalse(unTablero.hayBarcosEnPosicion(1,3));		
 	}	 
@@ -48,6 +48,30 @@ public class TableroTest {
 		String orientado = "diagonalmente";
 		Barco barco = fabrica.crearBarco("Acorazado");
 		unTablero.ubicarBarco(barco, posicion, orientado);		
+	}
+	
+	@Test
+	public void noDebePoderPosicionarUnBarcoFueraDelTableroTest() throws Exception{
+		BarcoFactory fabrica = new BarcoFactory();		
+		Posicion posicion = new Posicion(11,1);		
+		Barco barco = fabrica.crearBarco("Acorazado");
+		
+		Assert.assertFalse(unTablero.ubicarBarco(barco, posicion, "horizontalmente"));
+	}
+	
+	@Test
+	public void noDebePoderPosicionarUnBarcoConCoordenadasNegativasTest() throws Exception{
+		BarcoFactory fabrica = new BarcoFactory();		
+		Posicion posicion = new Posicion(-2,-3);		
+		Barco barco = fabrica.crearBarco("Acorazado");
+		
+		Assert.assertFalse(unTablero.ubicarBarco(barco, posicion, "horizontalmente"));
+	}
+	
+	@Test (expected=Exception.class)
+	public void alPreguntaPorPosicionesFueraDelTableroDebeLanzarUnaExceptionTest() throws Exception{
+		
+		unTablero.hayBarcosEnPosicion(3, 15);
 	}
 
 }

@@ -21,10 +21,25 @@ public class Tablero {
 		return this.ancho;
 	}
 
-	public boolean hayBarcosEnPosicion(int fila, int columna) { 
-		return posicionesOcupadas[fila][columna];
+	public boolean hayBarcosEnPosicion(int fila, int columna) throws Exception {
+		if ((fila < 0)||(fila >=alto)||(columna <0)||(columna >= ancho)){
+			throw new Exception("posicion fuera de tablero");
+		}
+		return posicionesOcupadas[fila-1][columna-1];
+	}	
+
+	public boolean ubicarBarco(Barco barco, Posicion posicionInicial,
+			String orientacion) throws Exception {		
+		Posicion[] posiciones = posicionesAOcuparPorElBarco(barco.getTamanio(), posicionInicial, orientacion);		
+		if (this.estanDentroDelTablero(posiciones)){
+			if (this.estanLibresLasPosiciones(posiciones)){
+				this.ocuparPosiciones(posiciones);			
+				return true;
+			}
+		}
+		return false;
 	}
-	
+
 	private void inicializarPosicionesOcupadas() {
 		for (int i=0; i < this.alto; i++){
 			for (int j=0; j < this.ancho; j++){
@@ -33,23 +48,23 @@ public class Tablero {
 		}
 	}
 
-	public boolean ubicarBarco(Barco barco, Posicion posicionInicial,
-			String orientacion) throws Exception {		
-		Posicion[] posiciones = posicionesAOcuparPorElBarco(barco.getTamanio(), posicionInicial, orientacion);		
-		if (this.estanLibresLasPosiciones(posiciones)){
-			this.ocuparPosiciones(posiciones);			
-			return true;
+	private boolean estanDentroDelTablero(Posicion[] posiciones) {
+		boolean filaValida = false;
+		boolean columnaValida = false;
+		for (Posicion actual:posiciones){
+			filaValida = (actual.getFila() > 0)&&(actual.getFila() <= this.alto);
+			columnaValida =(actual.getColumna() > 0)&&(actual.getColumna() <= this.ancho);			
 		}
-		return false;
+		return (filaValida && columnaValida);
 	}
 
 	private void ocuparPosiciones(Posicion[] posicionesOcupadas) {
 		for(Posicion actual: posicionesOcupadas){
-			this.posicionesOcupadas[actual.getFila()][actual.getColumna()] = true;			
+			this.posicionesOcupadas[actual.getFila()-1][actual.getColumna()-1] = true;			
 		}
 	}
 
-	private boolean estanLibresLasPosiciones(Posicion[] posiciones) {
+	private boolean estanLibresLasPosiciones(Posicion[] posiciones) throws Exception {
 		boolean estanLibres = true;
 		for(Posicion actual: posiciones){
 			estanLibres = (estanLibres && !this.hayBarcosEnPosicion(actual.getFila(), actual.getColumna()));

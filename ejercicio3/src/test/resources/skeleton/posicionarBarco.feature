@@ -14,3 +14,8 @@ Scenario: No se puede ubicar un barco si alguna de sus posiciones intermedias es
     Given hay un barco en posicion 2,6
     When jugador posiciona un Destructor en la posicion 1,6, verticalmente
     Then posicion intermedia ocupada no se puede ubicar el barco alli
+
+Scenario: No puedo ubicar mi barco en una posicion fuera del tablero
+	Given tablero es de 10 x 10
+	When jugador posiciona un Destructor en la posicion 11,1
+	Then la posicion elegida no pertenece al tablero

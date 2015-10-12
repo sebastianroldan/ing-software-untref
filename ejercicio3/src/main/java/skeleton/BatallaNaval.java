@@ -10,7 +10,7 @@ public class BatallaNaval {
 		this.fabricaBarcos = new BarcoFactory();
 	}
 
-	public boolean hayBarcosEnPosicion(int fila, int columna){		
+	public boolean hayBarcosEnPosicion(int fila, int columna) throws Exception{		
 		return this.tablero.hayBarcosEnPosicion(fila,columna);
 	}
 
