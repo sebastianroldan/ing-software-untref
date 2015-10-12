@@ -61,7 +61,7 @@ public class Stepdefs {
 	
 	@Then("^posicion intermedia ocupada no se puede ubicar el barco alli$")
 	public void posicion_intermedia_ocupada_no_se_puede_ubicar_el_barco_alli() throws Throwable {
-	    Assert.assertFalse(batalla1.hayBarcosEnPosicion(2,6)); 
+		Assert.assertFalse(batalla1.hayBarcosEnPosicion(2,6)); 
 	}
 	
 	@Then("^la posicion elegida no pertenece al tablero$")

@@ -37,7 +37,9 @@ public class TableroTest {
 		BarcoFactory fabrica = new BarcoFactory();		
 		Posicion posicion = new Posicion(1,1);
 		String orientado = "verticalmente";
+		
 		Barco barco = fabrica.crearBarco("Acorazado");
+		
 		Assert.assertTrue(unTablero.ubicarBarco(barco, posicion, orientado));		
 	}
 	
@@ -46,6 +48,7 @@ public class TableroTest {
 		BarcoFactory fabrica = new BarcoFactory();		
 		Posicion posicion = new Posicion(1,1);
 		String orientado = "diagonalmente";
+		
 		Barco barco = fabrica.crearBarco("Acorazado");
 		unTablero.ubicarBarco(barco, posicion, orientado);		
 	}
@@ -54,6 +57,7 @@ public class TableroTest {
 	public void noDebePoderPosicionarUnBarcoFueraDelTableroTest() throws Exception{
 		BarcoFactory fabrica = new BarcoFactory();		
 		Posicion posicion = new Posicion(11,1);		
+		
 		Barco barco = fabrica.crearBarco("Acorazado");
 		
 		Assert.assertFalse(unTablero.ubicarBarco(barco, posicion, "horizontalmente"));
@@ -63,6 +67,7 @@ public class TableroTest {
 	public void noDebePoderPosicionarUnBarcoConCoordenadasNegativasTest() throws Exception{
 		BarcoFactory fabrica = new BarcoFactory();		
 		Posicion posicion = new Posicion(-2,-3);		
+		
 		Barco barco = fabrica.crearBarco("Acorazado");
 		
 		Assert.assertFalse(unTablero.ubicarBarco(barco, posicion, "horizontalmente"));
