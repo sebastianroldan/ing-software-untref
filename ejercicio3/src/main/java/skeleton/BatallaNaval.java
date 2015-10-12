@@ -6,7 +6,7 @@ public class BatallaNaval {
 	private BarcoFactory fabricaBarcos;
 	
 	public BatallaNaval(int ancho, int alto){
-		this.tablero = new Tablero(ancho,alto);
+		this.tablero = new Tablero(ancho,alto);	
 		this.fabricaBarcos = new BarcoFactory();
 	}
 
@@ -20,6 +20,16 @@ public class BatallaNaval {
 		Barco barco = fabricaBarcos.crearBarco(tipoBarco);
 		Posicion posicionBarco = new Posicion(fila, columna);		
 		return this.tablero.ubicarBarco(barco, posicionBarco, orientacion);
+	}
+
+	public boolean disparar(int fila, int columna) throws Exception {
+		
+		return dioEnElBlanco(fila, columna);
+	}
+
+	private boolean dioEnElBlanco(int fila, int columna) throws Exception {
+		
+		return this.hayBarcosEnPosicion(fila, columna);
 	}	
 
 }

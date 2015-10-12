@@ -18,35 +18,9 @@ public class Stepdefs {
 				(batalla1.hayBarcosEnPosicion(fila2, columna2)));
 	}
 	
-	@Given("^hay un barco en posicion (\\d+),(\\d+)$")
-	public void hay_un_barco_en_posicion(int fila, int columna) throws Throwable {
-		batalla2.posicionar("Destructor", fila, columna, "horizontalmente");
-		Assert.assertTrue(batalla2.hayBarcosEnPosicion(fila,columna));
-	}
-	
-	@Given("^tablero es de (\\d+) x (\\d+)$")
-	public void tablero_es_de_x(int alto, int ancho) throws Throwable {
-		batalla3 = new BatallaNaval(alto,ancho);		
-	}
-
 	@When("^jugador posiciona un \"(.*?)\" en la posicion (\\d+),(\\d+) \"(.*?)\"$")
 	public void jugador_posiciona_un_en_la_posicion(String barco, int fila, int columna, String orientacion) throws Throwable {		
 		Assert.assertTrue(batalla1.posicionar(barco,fila,columna,orientacion));
-	}
-	
-	@When("^jugador posiciona un barco en la posicion (\\d+),(\\d+)$")
-	public void jugador_posiciona_un_barco_en_la_posicion(int fila, int columna) throws Throwable {
-		Assert.assertFalse(batalla2.posicionar("Lancha",fila,columna,"horizontalmente"));
-	}
-	
-	@When("^jugador posiciona un Destructor en la posicion (\\d+),(\\d+), verticalmente$")
-	public void jugador_posiciona_un_Destructor_en_la_posicion_verticalmente(int fila, int columna) throws Throwable {		
-		Assert.assertFalse(batalla2.posicionar("Destructor",fila,columna,"verticalmente"));
-	}
-	
-	@When("^jugador posiciona un Destructor en la posicion (\\d+),(\\d+)$")
-	public void jugador_posiciona_un_Destructor_en_la_posicion(int fila, int columna) throws Throwable {
-		Assert.assertFalse(batalla3.posicionar("Destructor",fila,columna,"horizontalmente"));
 	}
 	
 	@Then("^barco posicionado exitosamente$")
@@ -54,16 +28,42 @@ public class Stepdefs {
 		Assert.assertTrue(batalla1.hayBarcosEnPosicion(1,1));
 	}
 	
+	@Given("^hay un barco en posicion (\\d+),(\\d+)$")
+	public void hay_un_barco_en_posicion(int fila, int columna) throws Throwable {
+		batalla2.posicionar("Destructor", fila, columna, "horizontalmente");
+		Assert.assertTrue(batalla2.hayBarcosEnPosicion(fila,columna));
+	}
+	
+	@When("^jugador posiciona un barco en la posicion (\\d+),(\\d+)$")
+	public void jugador_posiciona_un_barco_en_la_posicion(int fila, int columna) throws Throwable {
+		Assert.assertFalse(batalla2.posicionar("Lancha",fila,columna,"horizontalmente"));
+	}
+	
 	@Then("^posicion ocupada no se puede ubicar el barco alli$")
 	public void posicion_ocupada_no_se_puede_ubicar_el_barco_alli() throws Throwable {
 	    Assert.assertTrue(batalla2.hayBarcosEnPosicion(1,1));
+	}
+	
+	@When("^jugador posiciona un Destructor en la posicion (\\d+),(\\d+), verticalmente$")
+	public void jugador_posiciona_un_Destructor_en_la_posicion_verticalmente(int fila, int columna) throws Throwable {		
+		Assert.assertFalse(batalla2.posicionar("Destructor",fila,columna,"verticalmente"));
 	}
 	
 	@Then("^posicion intermedia ocupada no se puede ubicar el barco alli$")
 	public void posicion_intermedia_ocupada_no_se_puede_ubicar_el_barco_alli() throws Throwable {
 		Assert.assertFalse(batalla1.hayBarcosEnPosicion(2,6)); 
 	}
+
+	@Given("^tablero es de (\\d+) x (\\d+)$")
+	public void tablero_es_de_x(int alto, int ancho) throws Throwable {
+		batalla3 = new BatallaNaval(alto,ancho);		
+	}
 	
+	@When("^jugador posiciona un Destructor en la posicion (\\d+),(\\d+)$")
+	public void jugador_posiciona_un_Destructor_en_la_posicion(int fila, int columna) throws Throwable {
+		Assert.assertFalse(batalla3.posicionar("Destructor",fila,columna,"horizontalmente"));
+	}
+
 	@Then("^la posicion elegida no pertenece al tablero$")
 	public void la_posicion_elegida_no_pertenece_al_tablero() throws Throwable {
 		try{
@@ -71,5 +71,20 @@ public class Stepdefs {
 		}catch(Exception e){
 			Assert.assertTrue(e.getMessage().equals("posicion fuera de tablero"));
 		}	
+	}
+	
+	@Given("^no hay barcos en posicion (\\d+),(\\d+)$")
+	public void no_hay_barcos_en_posicion(int fila, int columna) throws Throwable {
+		Assert.assertFalse((batalla1.hayBarcosEnPosicion(fila, columna)));
+	}
+	
+	@When("^disparo a la posicion (\\d+),(\\d+)$")
+	public void disparo_a_la_posicion(int fila, int columna) throws Throwable {
+		batalla1.disparar(fila, columna);
+	}
+	
+	@Then("^el disparo dio en el agua$")
+	public void el_disparo_dio_en_el_agua() throws Throwable {
+		Assert.assertFalse(batalla1.disparar(4,8));
 	}
 }
