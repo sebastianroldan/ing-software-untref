@@ -19,8 +19,8 @@ public class Stepdefs {
 	
 	@Given("^hay un barco en posicion (\\d+),(\\d+)$")
 	public void hay_un_barco_en_posicion(int fila, int columna) throws Throwable {
-		batalla2.posicionar("Destructor", 1, 1, "horizontalmente");
-		Assert.assertTrue(batalla2.hayBarcosEnPosicion(1,1));
+		batalla2.posicionar("Destructor", fila, columna, "horizontalmente");
+		Assert.assertTrue(batalla2.hayBarcosEnPosicion(fila,columna));
 	}
 
 	@When("^jugador posiciona un \"(.*?)\" en la posicion (\\d+),(\\d+) \"(.*?)\"$")
@@ -33,6 +33,11 @@ public class Stepdefs {
 		Assert.assertFalse(batalla2.posicionar("Lancha",fila,columna,"horizontalmente"));
 	}
 	
+	@When("^jugador posiciona un Destructor en la posicion (\\d+),(\\d+), verticalmente$")
+	public void jugador_posiciona_un_Destructor_en_la_posicion_verticalmente(int fila, int columna) throws Throwable {		
+		Assert.assertFalse(batalla2.posicionar("Destructor",fila,columna,"verticalmente"));
+	}
+	
 	@Then("^barco posicionado exitosamente$")
 	public void barco_posicionado_exitosamente() throws Throwable {
 		Assert.assertTrue(batalla1.hayBarcosEnPosicion(1,1));
@@ -43,4 +48,8 @@ public class Stepdefs {
 	    Assert.assertTrue(batalla2.hayBarcosEnPosicion(1,1));
 	}
 	
+	@Then("^posicion intermedia ocupada no se puede ubicar el barco alli$")
+	public void posicion_intermedia_ocupada_no_se_puede_ubicar_el_barco_alli() throws Throwable {
+	    Assert.assertFalse(batalla1.hayBarcosEnPosicion(2,6)); 
+	}
 }
