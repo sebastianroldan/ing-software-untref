@@ -33,11 +33,11 @@ public class Tablero {
 		}
 	}
 
-	public boolean esPosibleUbicarBarco(Barco barco, Posicion posicionInicial,
+	public boolean ubicarBarco(Barco barco, Posicion posicionInicial,
 			String orientacion) throws Exception {		
 		Posicion[] posiciones = posicionesAOcuparPorElBarco(barco.getTamanio(), posicionInicial, orientacion);		
 		if (this.estanLibresLasPosiciones(posiciones)){
-			this.ocuparPosiciones(posiciones);
+			this.ocuparPosiciones(posiciones);			
 			return true;
 		}
 		return false;
@@ -45,7 +45,7 @@ public class Tablero {
 
 	private void ocuparPosiciones(Posicion[] posicionesOcupadas) {
 		for(Posicion actual: posicionesOcupadas){
-			this.posicionesOcupadas[actual.getFila()][actual.getColumna()] = true;
+			this.posicionesOcupadas[actual.getFila()][actual.getColumna()] = true;			
 		}
 	}
 

@@ -8,22 +8,39 @@ import cucumber.api.java.en.When;
 
 public class Stepdefs {
 	
-	private BatallaNaval batallaNaval = new BatallaNaval(10,10); 
+	private BatallaNaval batalla1 = new BatallaNaval(10,10);
+	private BatallaNaval batalla2 = new BatallaNaval(10,10);
 	
 	@Given("^posicion (\\d+),(\\d+) esta libre y posicion (\\d+),(\\d+) esta libre$")
-	public void posicion_esta_libre_y_posicion_esta_libre(int fila1, int columna1, int fila2, int columna2) throws Throwable {
-		Assert.assertFalse((batallaNaval.hayBarcosEnPosicion(fila1, columna1))||
-				(batallaNaval.hayBarcosEnPosicion(fila2, columna2)));
+	public void posicion_esta_libre_y_posicion_esta_libre(int fila1, int columna1, int fila2, int columna2) throws Throwable {		
+		Assert.assertFalse((batalla1.hayBarcosEnPosicion(fila1, columna1))||
+				(batalla1.hayBarcosEnPosicion(fila2, columna2)));
+	}
+	
+	@Given("^hay un barco en posicion (\\d+),(\\d+)$")
+	public void hay_un_barco_en_posicion(int fila, int columna) throws Throwable {
+		batalla2.posicionar("Destructor", 1, 1, "horizontalmente");
+		Assert.assertTrue(batalla2.hayBarcosEnPosicion(1,1));
 	}
 
 	@When("^jugador posiciona un \"(.*?)\" en la posicion (\\d+),(\\d+) \"(.*?)\"$")
-	public void jugador_posiciona_un_en_la_posicion(String barco, int fila, int columna, String orientacion) throws Throwable {
-		Assert.assertTrue(batallaNaval.posicionar(barco,fila,columna,orientacion));
+	public void jugador_posiciona_un_en_la_posicion(String barco, int fila, int columna, String orientacion) throws Throwable {		
+		Assert.assertTrue(batalla1.posicionar(barco,fila,columna,orientacion));
+	}
+	
+	@When("^jugador posiciona un barco en la posicion (\\d+),(\\d+)$")
+	public void jugador_posiciona_un_barco_en_la_posicion(int fila, int columna) throws Throwable {
+		Assert.assertFalse(batalla2.posicionar("Lancha",fila,columna,"horizontalmente"));
 	}
 	
 	@Then("^barco posicionado exitosamente$")
 	public void barco_posicionado_exitosamente() throws Throwable {
-		Assert.assertTrue(batallaNaval.hayBarcosEnPosicion(1,1));
+		Assert.assertTrue(batalla1.hayBarcosEnPosicion(1,1));
+	}
+	
+	@Then("^posicion ocupada no se puede ubicar el barco alli$")
+	public void posicion_ocupada_no_se_puede_ubicar_el_barco_alli() throws Throwable {
+	    Assert.assertTrue(batalla2.hayBarcosEnPosicion(1,1));
 	}
 	
 }

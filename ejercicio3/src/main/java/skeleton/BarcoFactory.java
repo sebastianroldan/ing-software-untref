@@ -5,13 +5,14 @@ public class BarcoFactory {
 	private Barco barco;
 	
 	public Barco crearBarco(String tipoBarco) throws Exception {				
-
-		switch (tipoBarco.toLowerCase()){
+		
+		String tipo = tipoBarco.toLowerCase();
+		switch (tipo){
 			case "acorazado": barco = new Acorazado();			
 			break;			
 			case "lancha": barco = new Lancha();
 			break;
-			case "vibora": barco = new Destructor();
+			case "destructor": barco = new Destructor();
 			break;
 			default: throw new Exception("Tipo de barco desconocido");
 		}

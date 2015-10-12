@@ -10,7 +10,7 @@ public class BatallaNaval {
 		this.fabricaBarcos = new BarcoFactory();
 	}
 
-	public boolean hayBarcosEnPosicion(int fila, int columna) {
+	public boolean hayBarcosEnPosicion(int fila, int columna){		
 		return this.tablero.hayBarcosEnPosicion(fila,columna);
 	}
 
@@ -18,8 +18,7 @@ public class BatallaNaval {
 			String orientacion) throws Exception {		
 		Barco barco = fabricaBarcos.crearBarco(tipoBarco);
 		Posicion posicionBarco = new Posicion(fila, columna);		
-		boolean resultado = this.tablero.esPosibleUbicarBarco(barco, posicionBarco, orientacion);
-		return resultado; 
+		return this.tablero.ubicarBarco(barco, posicionBarco, orientacion);
 	}	
 
 }

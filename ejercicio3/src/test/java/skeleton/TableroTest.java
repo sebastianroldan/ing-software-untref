@@ -29,7 +29,7 @@ public class TableroTest {
 		Posicion posicion = new Posicion(1,1);
 		String orientado = "horizontalmente";
 		
-		Assert.assertTrue(unTablero.esPosibleUbicarBarco(barco, posicion, orientado));		
+		Assert.assertTrue(unTablero.ubicarBarco(barco, posicion, orientado));		
 	}
 	
 	@Test
@@ -38,7 +38,7 @@ public class TableroTest {
 		Posicion posicion = new Posicion(1,1);
 		String orientado = "verticalmente";
 		Barco barco = fabrica.crearBarco("Acorazado");
-		Assert.assertTrue(unTablero.esPosibleUbicarBarco(barco, posicion, orientado));		
+		Assert.assertTrue(unTablero.ubicarBarco(barco, posicion, orientado));		
 	}
 	
 	@Test(expected=Exception.class)
@@ -47,6 +47,7 @@ public class TableroTest {
 		Posicion posicion = new Posicion(1,1);
 		String orientado = "diagonalmente";
 		Barco barco = fabrica.crearBarco("Acorazado");
-		unTablero.esPosibleUbicarBarco(barco, posicion, orientado);		
+		unTablero.ubicarBarco(barco, posicion, orientado);		
 	}
+
 }
