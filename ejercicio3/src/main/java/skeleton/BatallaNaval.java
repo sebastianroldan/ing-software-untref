@@ -17,9 +17,7 @@ public class BatallaNaval {
 	public boolean posicionar(String tipoBarco, int fila, int columna,
 			String orientacion) throws Exception {		
 		Barco barco = fabricaBarcos.crearBarco(tipoBarco);
-		Posicion posicionBarco = new Posicion(fila, columna);
-		System.out.println(posicionBarco.getFila());
-		System.out.println(barco.getTamanio());
+		Posicion posicionBarco = new Posicion(fila, columna);		
 		boolean resultado = this.tablero.esPosibleUbicarBarco(barco, posicionBarco, orientacion);
 		return resultado; 
 	}	
