@@ -75,16 +75,21 @@ public class Stepdefs {
 	
 	@Given("^no hay barcos en posicion (\\d+),(\\d+)$")
 	public void no_hay_barcos_en_posicion(int fila, int columna) throws Throwable {
-		Assert.assertFalse((batalla1.hayBarcosEnPosicion(fila, columna)));
+		Assert.assertFalse((batalla2.hayBarcosEnPosicion(fila, columna)));
 	}
 	
 	@When("^disparo a la posicion (\\d+),(\\d+)$")
 	public void disparo_a_la_posicion(int fila, int columna) throws Throwable {
-		batalla1.disparar(fila, columna);
+		batalla2.disparar(fila, columna);
 	}
 	
 	@Then("^el disparo dio en el agua$")
 	public void el_disparo_dio_en_el_agua() throws Throwable {
-		Assert.assertFalse(batalla1.disparar(4,8));
+		Assert.assertFalse(batalla2.disparar(4,8));
+	}
+	
+	@Then("^el disparo dio en el blanco$")
+	public void el_disparo_dio_en_el_blanco() throws Throwable {
+	    Assert.assertTrue(batalla2.disparar(5,5));
 	}
 }

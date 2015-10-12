@@ -1,6 +1,6 @@
 package skeleton;
 
-public class Posicion {
+public class Posicion{
 	
 	private int fila;
 	private int columna;
@@ -17,4 +17,14 @@ public class Posicion {
 		return columna;
 	}
 	
+	@Override
+	public int hashCode() {
+		return (int) fila;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+			Posicion posicion = (Posicion) obj;
+			return ((this.getFila() == posicion.getFila())&&(this.getColumna() == posicion.getColumna()));	
+	}
 }

@@ -30,7 +30,9 @@ public class Tablero {
 
 	public boolean ubicarBarco(Barco barco, Posicion posicionInicial,
 			String orientacion) throws Exception {		
+		
 		Posicion[] posiciones = posicionesAOcuparPorElBarco(barco.getTamanio(), posicionInicial, orientacion);		
+		barco.setPosiciones(posiciones);
 		if (this.estanDentroDelTablero(posiciones)){
 			if (this.estanLibresLasPosiciones(posiciones)){
 				this.ocuparPosiciones(posiciones);			

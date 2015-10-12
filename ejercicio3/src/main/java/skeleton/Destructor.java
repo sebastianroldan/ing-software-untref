@@ -3,6 +3,6 @@ package skeleton;
 public class Destructor extends Barco {
 	
 	public Destructor(){
-		super.setTamanio(3);
+		super.setTamanio(3);		
 	}
 }
