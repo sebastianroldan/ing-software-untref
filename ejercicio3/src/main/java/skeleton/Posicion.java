@@ -24,7 +24,7 @@ public class Posicion{
 	
 	@Override
 	public boolean equals(Object obj) {
-			Posicion posicion = (Posicion) obj;
-			return ((this.getFila() == posicion.getFila())&&(this.getColumna() == posicion.getColumna()));	
+		Posicion posicion = (Posicion) obj;
+		return ((this.getFila() == posicion.getFila())&&(this.getColumna() == posicion.getColumna()));	
 	}
 }
