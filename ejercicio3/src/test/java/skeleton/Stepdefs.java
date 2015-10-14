@@ -10,7 +10,7 @@ public class Stepdefs {
 	
 	private BatallaNaval batalla1 = new BatallaNaval(10,10);
 	private BatallaNaval batalla2 = new BatallaNaval(10,10);
-	private BatallaNaval batalla3;
+	private BatallaNaval batalla3 = new BatallaNaval(10,10);
 	
 	@Given("^posicion (\\d+),(\\d+) esta libre y posicion (\\d+),(\\d+) esta libre$")
 	public void posicion_esta_libre_y_posicion_esta_libre(int fila1, int columna1, int fila2, int columna2) throws Throwable {		
@@ -67,7 +67,8 @@ public class Stepdefs {
 	@Then("^la posicion elegida no pertenece al tablero$")
 	public void la_posicion_elegida_no_pertenece_al_tablero() throws Throwable {
 		try{
-			batalla3.hayBarcosEnPosicion(11,1);			
+			batalla3.hayBarcosEnPosicion(11,1);	
+			Assert.fail();
 		}catch(Exception e){
 			Assert.assertTrue(e.getMessage().equals("posicion fuera de tablero"));
 		}	
@@ -91,5 +92,41 @@ public class Stepdefs {
 	@Then("^el disparo dio en el blanco$")
 	public void el_disparo_dio_en_el_blanco() throws Throwable {
 	    Assert.assertTrue(batalla2.disparar(5,5));
+	}
+	
+	@Given("^disparo a la posicion (\\d+),(\\d+) And el disparo dio en el blanco$")
+	public void disparo_a_la_posicion_And_el_disparo_dio_en_el_blanco(int fila, int columna) throws Throwable {
+		Assert.assertTrue(batalla3.posicionar("Acorazado",fila,columna,"horizontalmente"));
+		Assert.assertTrue(batalla3.disparar(fila,columna));	
+	}
+	
+	@When("^todas las posiciones del barco han sido destruidas$")
+	public void todas_las_posiciones_del_barco_han_sido_destruidas() throws Throwable {
+		Assert.assertTrue(batalla3.disparar(1,9));
+	}
+	
+	@Then("^el barco ha sido hundido$")
+	public void el_barco_ha_sido_hundido() throws Throwable {
+		Assert.assertTrue(batalla3.fueHundidoElBarcoEnLaPosicion(1,8));
+	}
+	
+	@When("^disparo hacia la posicion (\\d+),(\\d+)$")
+	public void disparo_hacia_la_posicion(int fila, int columna) throws Throwable {
+		try{
+			batalla3.disparar(fila, columna);
+			Assert.fail();
+		}catch(Exception e){
+			Assert.assertTrue(e.getMessage().equals("posicion fuera de tablero"));
+		}
+	}
+	
+	@Then("^no se puede disparar a esa posicion$")
+	public void no_se_puede_disparar_a_esa_posicion() throws Throwable {
+		try{
+			batalla3.disparar(11,1);
+			Assert.fail();
+		}catch(Exception e){
+			Assert.assertTrue(e.getMessage().equals("posicion fuera de tablero"));
+		}
 	}
 }

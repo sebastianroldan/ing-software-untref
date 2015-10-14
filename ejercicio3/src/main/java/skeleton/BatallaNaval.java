@@ -52,6 +52,16 @@ public class BatallaNaval {
 				barco.producirDanio(posicionDisparo);
 			}
 		}
+	}
+
+	public boolean fueHundidoElBarcoEnLaPosicion(int fila, int columna) {
+		boolean hundido = false;
+		for (Barco barco:barcos){
+			if (barco.estasEnEstaPosicion(new Posicion(fila,columna))){
+				hundido = barco.estasHundido();
+			}
+		}
+		return hundido;
 	}	
 
 }

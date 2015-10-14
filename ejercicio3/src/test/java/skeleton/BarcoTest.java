@@ -28,4 +28,64 @@ public class BarcoTest {
 				
 		Assert.assertTrue(unBarco.estasEnEstaPosicion(new Posicion(3,2)));
 	}
+	
+	@Test
+	public void posicionEstaDaniadaDeberiaDevolverFalseTest(){
+		Barco otroBarco = new Acorazado();		
+		Posicion[] posiciones = new Posicion[2];
+		Posicion posicion1 = new Posicion(1,1);
+		Posicion posicion2 = new Posicion(1,2);
+		posiciones[0]=(posicion1);
+		posiciones[1]=(posicion2);
+		
+		otroBarco.setPosiciones(posiciones);
+		
+		Assert.assertFalse(otroBarco.posicionEstaDaniada(posicion1));
+	}
+	
+	@Test
+	public void posicionEstaDaniadaDeberiaDevolverTrueTest(){
+		Barco otroBarco = new Acorazado();		
+		Posicion[] posiciones = new Posicion[2];
+		Posicion posicion1 = new Posicion(1,1);
+		Posicion posicion2 = new Posicion(1,2);
+		posiciones[0]=(posicion1);
+		posiciones[1]=(posicion2);
+		
+		otroBarco.setPosiciones(posiciones);
+		otroBarco.producirDanio(posicion2);
+		
+		Assert.assertTrue(otroBarco.posicionEstaDaniada(posicion2));
+	}
+		
+	@Test
+	public void estasHundidoDeberiaDevolverFalseTest(){
+		Barco otroBarco = new Acorazado();		
+		Posicion[] posiciones = new Posicion[2];
+		Posicion posicion1 = new Posicion(1,1);
+		Posicion posicion2 = new Posicion(1,2);
+		posiciones[0]=(posicion1);
+		posiciones[1]=(posicion2);
+		
+		otroBarco.setPosiciones(posiciones);
+		otroBarco.producirDanio(posicion1);		
+		
+		Assert.assertFalse(otroBarco.estasHundido());
+	}
+	
+	@Test
+	public void estasHundidoDeberiaDevolverTrueTest(){
+		Barco otroBarco = new Acorazado();		
+		Posicion[] posiciones = new Posicion[2];
+		Posicion posicion1 = new Posicion(1,1);
+		Posicion posicion2 = new Posicion(1,2);
+		posiciones[0]=(posicion1);
+		posiciones[1]=(posicion2);
+		
+		otroBarco.setPosiciones(posiciones);
+		otroBarco.producirDanio(posicion1);		
+		otroBarco.producirDanio(posicion2);
+		
+		Assert.assertTrue(otroBarco.estasHundido());
+	}
 }

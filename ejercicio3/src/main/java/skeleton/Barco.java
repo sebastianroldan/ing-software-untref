@@ -37,4 +37,12 @@ public abstract class Barco {
 	public boolean posicionEstaDaniada(Posicion posicion){
 		return this.posiciones.get(posicion);
 	}
+
+	public boolean estasHundido() {
+		boolean hundido = true;
+		for (boolean daniado:posiciones.values()){
+			hundido = hundido && daniado;
+		}
+		return hundido;
+	}
 }
